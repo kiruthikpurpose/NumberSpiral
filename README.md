@@ -26,9 +26,9 @@ python3 NumberSpiral.py
 ```
 
 #### For Versions 2 and 3:
-Firstly install the libraries with:
+Firstly install tkinter with:
 ```console
-pip install -r requirements.txt
+sudo apt-get install python3-tk
 ```
 And then run:
 ```console
