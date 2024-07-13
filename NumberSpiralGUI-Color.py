@@ -6,32 +6,52 @@ class SpiralGUI:
         self.root = root
         self.root.title("Animated Spiral")
 
-        # Welcome message
+        # Initialize GUI elements
+        self.setup_gui()
+
+        # Initialize animation variables
+        self.cell_size = 0
+        self.num = 1
+        self.spiral = []
+        self.colors = []
+
+    def setup_gui(self):
+        """Set up the GUI components."""
+        self.create_widgets()
+
+    def create_widgets(self):
+        """Create all the widgets (labels, entry, button, canvas)."""
+        self.create_welcome_label()
+        self.create_entry_widgets()
+        self.create_start_button()
+        self.create_canvas()
+
+    def create_welcome_label(self):
+        """Create the welcome label."""
         self.welcome_label = tk.Label(self.root, text="Welcome to the animated spiral generator!", font=("Helvetica", 16, "bold"))
         self.welcome_label.pack(pady=10)
 
-        # Entry field for spiral size
+    def create_entry_widgets(self):
+        """Create the entry widgets (label and entry field for size)."""
         self.n_label = tk.Label(self.root, text="Enter size of spiral:")
         self.n_label.pack()
         
         self.n_entry = tk.Entry(self.root)
         self.n_entry.pack()
 
-        # Start animation button
+    def create_start_button(self):
+        """Create the start animation button."""
         self.start_button = tk.Button(self.root, text="Start Animation", command=self.start_animation)
         self.start_button.pack(pady=10)
 
-        # Canvas for drawing spiral
+    def create_canvas(self):
+        """Create the canvas for drawing the spiral."""
         self.canvas_size = 800  # Initial canvas size
         self.canvas = tk.Canvas(self.root, width=self.canvas_size, height=self.canvas_size, bg='white')
         self.canvas.pack()
 
-        self.cell_size = 0
-        self.num = 1
-        self.spiral = []
-        self.colors = []
-
     def start_animation(self):
+        """Start the animation of drawing the spiral."""
         try:
             n = int(self.n_entry.get())
             if n <= 0:
@@ -49,6 +69,7 @@ class SpiralGUI:
             print(f"Error: {e}")
 
     def draw_spiral_animation(self):
+        """Draws the animated spiral on the canvas."""
         left, right = 0, len(self.spiral) - 1
         top, bottom = 0, len(self.spiral) - 1
 
@@ -98,6 +119,7 @@ class SpiralGUI:
             left += 1
 
     def generate_color_gradient(self, n):
+        """Generates a gradient of colors for the spiral cells."""
         colors = []
         hue_start = 0.6  # Start hue (blue-green)
         hue_end = 0.1    # End hue (purple)
@@ -112,6 +134,7 @@ class SpiralGUI:
         return colors
 
     def draw_canvas(self):
+        """Draws the current state of the spiral on the canvas."""
         self.canvas.delete("all")
 
         for i in range(len(self.spiral)):
