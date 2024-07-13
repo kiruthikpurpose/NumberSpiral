@@ -30,6 +30,7 @@ class SpiralGUI:
         self.spiral = []
 
     def start_animation(self):
+        """Starts the animation of drawing the spiral."""
         try:
             n = int(self.n_entry.get())
             if n <= 0:
@@ -46,6 +47,7 @@ class SpiralGUI:
             print(f"Error: {e}")
 
     def draw_spiral_animation(self):
+        """Draws the spiral animation on the canvas."""
         left, right = 0, len(self.spiral) - 1
         top, bottom = 0, len(self.spiral) - 1
 
@@ -95,6 +97,7 @@ class SpiralGUI:
             left += 1
 
     def draw_canvas(self):
+        """Draws the current state of the spiral on the canvas."""
         self.canvas.delete("all")
 
         for i in range(len(self.spiral)):
